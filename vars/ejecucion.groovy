@@ -20,6 +20,7 @@ def call(){
                         OUTPUT: BOLEANO
                         */
 
+
                         /*VALIDAR TIPO DE RAMA A EJECUTAR
                         when {
                             branch 'production'
@@ -27,7 +28,6 @@ def call(){
                         }
                         */
 
-                        echo "esto es una prueba"
                         // println 'Stage a ejecutar': + params.stage
                         //println 'Herramienta de ejecución: ' + params.eleccion
                         //echo "Stage: ${params.stage}"
@@ -35,6 +35,13 @@ def call(){
                     }
                 }
             }
+            stage('Stage When')
+            when {
+                    branch 'feature-estadopais'
+                }
+                steps{
+                    echo "Aca entre al When"
+                }
         }
 
         post {
