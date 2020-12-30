@@ -10,35 +10,40 @@ def call(){
         }
             
         stages {
-            stage('Validar Stage') {
+            stage('Validaciones') {
                 steps{
                     script{
 
-                        /*LLAMAR A FUNCION QUE VALIDE SI LOS STAGE INGRESADOS POR EL USUARIO SON VALIDOS
-                        INPUT: STRING CON STAGE INGRESADOS
-                        OUTPUT: BOLEANO
-                        */
-
+                        
+                        // VALIDA SI LOS STAGE INGRESADOS POR EL USUARIO SON VALIDOS. INPUT: STRING CON STAGE INGRESADOS. OUTPUT: BOLEANO
                         util.validarStages()
-
+                        // VALIDA QUE LAS RAMA A PROCESAR SEA VALIDA. INPUT: NOMBRE RAMA. OUTPUT BOLEANO
+                        util.validarRamas()
+                        // VALIDA TECNOLOGIA UTILIZADA
+                        util.validaTecnologia()
                     }
                 }
             }
-            stage('Validando Ramas') {
-                
+
+            stage('Pipeline') {    
                 steps{
                     script{
 
                         echo "NOMBRE RAMA: ${BRANCH_NAME}"
-                        if (rama == 'RELEASE' || rama == 'DEVELOP' || rama == 'feature-estadopais')
-                        {
-                            echo "Dentro del If"
-                            //Validar formato de nombre de rama release según patrón release-v{major}-{minor}-{patch}
-                            //Si Rama == Release entonces llamar a funcion que valide el nombre segun patron
-                            
-                            util.validarNombre()
-                        } 
                         
+                        if ("${BRANCH_NAME}" == 'DEVELOP' || "${BRANCH_NAME}" == 'feature-estadopais')
+                        {
+                            // INTEGRACION CONTINUA
+                            ic.call()
+
+
+                        } else{
+
+                            // VALIDAR NOMBRE SEGUN PATRON release-v{major}-{minor}-{patch}
+                            util.validarNombre()
+                            // Despliegue continuo
+                            cd.call()
+                        }
                     }
                 }
             }
