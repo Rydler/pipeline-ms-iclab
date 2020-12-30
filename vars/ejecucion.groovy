@@ -1,6 +1,6 @@
 def call(){
 
-    def rama = 'feature-estadopais'
+    def rama = "${BRANCH_NAME}"
     pipeline {
         agent any
         parameters { 
