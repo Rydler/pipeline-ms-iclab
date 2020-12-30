@@ -20,12 +20,12 @@ def call(){
                         OUTPUT: BOLEANO
                         */
 
-                        /*VALIDAR TIPO DE RAMA A EJECUTAR*/
+                        /*VALIDAR TIPO DE RAMA A EJECUTAR
                         when {
                             branch 'production'
                             echo "When"
                         }
-
+                        */
 
                         echo "esto es una prueba"
                         // println 'Stage a ejecutar': + params.stage
