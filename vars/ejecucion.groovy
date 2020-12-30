@@ -1,6 +1,6 @@
 def call(){
 
-    def rama = "${BRANCH_NAME}"
+    
     pipeline {
         agent any
         parameters { 
@@ -27,7 +27,10 @@ def call(){
                 }
             }
 
-            stage('Pipeline') {    
+            stage('Pipeline') {
+                when {
+                    branch 'production'
+                }    
                 steps{
                     script{
 
@@ -48,6 +51,17 @@ def call(){
                         }
                     }
                 }
+            }
+
+            stage('Pipeline 2') {
+                when {
+                    branch 'feature-estadopais'
+                } 
+                steps{
+                    script{
+                        echo "Estoy en un Stage avanzado"
+                    }
+                } 
             }
         }
 
