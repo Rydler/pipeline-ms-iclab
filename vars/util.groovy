@@ -18,3 +18,12 @@ def validaTecnologia(){
     
     echo "Funcion Validando tecnologia"
 }
+
+def validaArchivo(){
+    
+    if (fileExists('build.gradle')) {
+        echo 'Existe el Archivo para la aplicacion en Gradle'
+    } else {
+        echo 'No Existe el Archivo para la aplicacion en Gradle'
+    }
+}

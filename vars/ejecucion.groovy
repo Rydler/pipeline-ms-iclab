@@ -21,6 +21,8 @@ def call(){
                         util.validarRamas()
                         // VALIDA TECNOLOGIA UTILIZADA
                         util.validaTecnologia()
+                        // VALIDA ARCHIVO EXISTENTE
+                        util.validaArchivo()
                     }
                 }
             }
