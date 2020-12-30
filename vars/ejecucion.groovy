@@ -35,13 +35,14 @@ def call(){
                     }
                 }
             }
-            stage('Stage When')
-            when {
-                    branch 'feature-estadopais'
-                }
-                steps{
-                    echo "Aca entre al When"
-                }
+            stage('Stage When') {
+                when {
+                        branch 'feature-estadopais'
+                    }
+                    steps{
+                        echo "Aca entre al When"
+                    }
+            }
         }
 
         post {
