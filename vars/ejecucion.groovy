@@ -34,7 +34,7 @@ def call(){
                         if ("${BRANCH_NAME}" == 'DEVELOP' || "${BRANCH_NAME}" == 'feature-estadopais')
                         {
                             // INTEGRACION CONTINUA
-                            ic.call()
+                            ci.call()
 
 
                         } else{
