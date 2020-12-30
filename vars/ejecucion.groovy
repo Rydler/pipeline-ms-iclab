@@ -27,39 +27,47 @@ def call(){
                 }
             }
 
-            stage('Pipeline') {
+            stage('Branch Feature') {
                 when {
-                    branch 'production'
+                    branch 'feature-estadopais'
                 }    
                 steps{
                     script{
 
                         echo "NOMBRE RAMA: ${BRANCH_NAME}"
-                        
-                        if ("${BRANCH_NAME}" == 'DEVELOP' || "${BRANCH_NAME}" == 'feature-estadopais')
-                        {
-                            // INTEGRACION CONTINUA
-                            ci.call()
-
-
-                        } else{
-
-                            // VALIDAR NOMBRE SEGUN PATRON release-v{major}-{minor}-{patch}
-                            util.validarNombre()
-                            // Despliegue continuo
-                            cd.call()
-                        }
+                        // INTEGRACION CONTINUA
+                        ci.call() 
                     }
                 }
             }
 
-            stage('Pipeline 2') {
+            stage('Branch Develop') {
                 when {
-                    branch 'feature-estadopais'
+                    branch 'develop'
                 } 
                 steps{
                     script{
-                        echo "Estoy en un Stage avanzado"
+
+                        echo "NOMBRE RAMA: ${BRANCH_NAME}"
+                        // INTEGRACION CONTINUA
+                        ci.call()
+                    }
+                } 
+            }
+
+            stage('Branch Release') {
+                when {
+                    branch 'release'
+                } 
+                steps{
+                    script{
+                        
+                        echo "NOMBRE RAMA: ${BRANCH_NAME}"
+                        // VALIDAR NOMBRE SEGUN PATRON release-v{major}-{minor}-{patch}
+                        util.validarNombre()
+                        // Despliegue continuo
+                        cd.call()
+                        
                     }
                 } 
             }
