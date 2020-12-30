@@ -25,18 +25,22 @@ def call(){
                 }
             }
             stage('Validando Ramas') {
-                when {
-                        branch 'feature-estadopais'
-                    }
-                    steps{
-                        script{
-                        
+                
+                steps{
+                    script{
+
+                        echo "NOMBRE RAMA: ${BRANCH_NAME}"
+                        if (${BRANCH_NAME} == 'RELEASE' || ${BRANCH_NAME} == 'DEVELOP' || ${BRANCH_NAME} == 'feature-estadopais')
+                        {
+                            echo "Dentro del If"
                             //Validar formato de nombre de rama release según patrón release-v{major}-{minor}-{patch}
                             //Si Rama == Release entonces llamar a funcion que valide el nombre segun patron
                             
                             util.validarNombre()
-                        }
+                        } 
+                        
                     }
+                }
             }
         }
 
