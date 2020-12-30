@@ -21,7 +21,7 @@ def validaTecnologia(){
 
 def validaArchivo(){
     
-    if (fileExists('build.gradle')) {
+    if (fileExists('mvnw.cmd')) {
         echo 'Existe el Archivo para la aplicacion en Gradle'
     } else {
         echo 'No Existe el Archivo para la aplicacion en Gradle'
