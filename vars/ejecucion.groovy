@@ -1,6 +1,6 @@
 def call(){
 
-
+    def rama = ${BRANCH_NAME}
     pipeline {
         agent any
         parameters { 
@@ -30,7 +30,7 @@ def call(){
                     script{
 
                         echo "NOMBRE RAMA: ${BRANCH_NAME}"
-                        if (${BRANCH_NAME} == 'RELEASE' || ${BRANCH_NAME} == 'DEVELOP' || ${BRANCH_NAME} == 'feature-estadopais')
+                        if (rama == 'RELEASE' || rama == 'DEVELOP' || rama == 'feature-estadopais')
                         {
                             echo "Dentro del If"
                             //Validar formato de nombre de rama release según patrón release-v{major}-{minor}-{patch}
