@@ -1,6 +1,6 @@
 def call(){
 
-    
+
     pipeline {
         agent any
         parameters { 
@@ -10,37 +10,30 @@ def call(){
         }
             
         stages {
-            stage('Pipeline') {
+            stage('Validar Stage') {
                 steps{
                     script{
 
-                        echo "RAMA: ${BRANCH_NAME}"
                         /*LLAMAR A FUNCION QUE VALIDE SI LOS STAGE INGRESADOS POR EL USUARIO SON VALIDOS
                         INPUT: STRING CON STAGE INGRESADOS
                         OUTPUT: BOLEANO
                         */
 
-
-                        /*VALIDAR TIPO DE RAMA A EJECUTAR
-                        when {
-                            branch 'production'
-                            echo "When"
-                        }
-                        */
-
-                        // println 'Stage a ejecutar': + params.stage
-                        //println 'Herramienta de ejecución: ' + params.eleccion
-                        //echo "Stage: ${params.stage}"
+                        util.validarStages()
 
                     }
                 }
             }
-            stage('Stage When') {
+            stage('Validando Ramas') {
                 when {
                         branch 'feature-estadopais'
                     }
                     steps{
-                        echo "Aca entre al When"
+                        
+                        //Validar formato de nombre de rama release según patrón release-v{major}-{minor}-{patch}
+                        //Si Rama == Release entonces llamar a funcion que valide el nombre segun patron
+                        
+                        util.validarNombre()
                     }
             }
         }
