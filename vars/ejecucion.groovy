@@ -29,11 +29,13 @@ def call(){
                         branch 'feature-estadopais'
                     }
                     steps{
+                        script{
                         
-                        //Validar formato de nombre de rama release según patrón release-v{major}-{minor}-{patch}
-                        //Si Rama == Release entonces llamar a funcion que valide el nombre segun patron
-                        
-                        util.validarNombre()
+                            //Validar formato de nombre de rama release según patrón release-v{major}-{minor}-{patch}
+                            //Si Rama == Release entonces llamar a funcion que valide el nombre segun patron
+                            
+                            util.validarNombre()
+                        }
                     }
             }
         }
