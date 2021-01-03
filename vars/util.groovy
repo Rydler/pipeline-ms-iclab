@@ -8,11 +8,10 @@ def validarStages(){
 def validarRamas(){
     echo "Funcion Validando Ramas"
     echo "${BRANCH_NAME}"
-    if ("${BRANCH_NAME}".startsWith('feature') {
+    if ("${BRANCH_NAME}".startsWith('feature'){ 
         echo "RAMA CORRECTA"
-    } else {
-        echo "RAMA INCORRECTA"
     }
+  
 }
 
 def validarNombre(){
