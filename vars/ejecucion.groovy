@@ -19,7 +19,7 @@ def call(){
                         util.validarStages()
                         // VALIDA QUE LAS RAMA A PROCESAR SEA VALIDA. INPUT: NOMBRE RAMA. OUTPUT BOLEANO
                         def check = util.validarRamas()
-                        //echo check
+                        echo "${check}"
                         // VALIDA TECNOLOGIA UTILIZADA
                         util.validaTecnologia()
                         // VALIDA ARCHIVO EXISTENTE
