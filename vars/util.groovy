@@ -7,14 +7,8 @@ def validarStages(){
 
 def validarRamas(){
     echo "Funcion Validando Ramas"
-    def ramita = "${BRANCH_NAME}"
-    echo ramita
-    if (ramita.startsWith('feature')){
-        echo "RAMA VALIDA"
-    } else {
-        echo "RAMA INVALIDA"
-    }
-    //return ${BRANCH_NAME}.startsWith('feature')    
+    def rama_value = "${BRANCH_NAME}"
+    return  (rama_value.startsWith('feature') || rama_value.startsWith('develop') || rama_value.startsWith('release'))   
 }
 
 def validarNombre(){
