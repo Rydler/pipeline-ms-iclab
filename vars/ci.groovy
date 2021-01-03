@@ -1,6 +1,7 @@
 def call(){
 
     echo "Estoy dentro del CI"
+    echo "WORKSPACE: ${WORKSPACE}"
     
     // Obtengo el nombre del repositorio
     def repository = util.determineRepoName()
@@ -18,7 +19,7 @@ def call(){
     stage('Sonar'){
         def scannerHome = tool 'sonar';
         withSonarQubeEnv('sonar') { // If you have configured more than one global server connection, you can specify its name
-            sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=repository-${BRANCH_NAME}-${BUILD_NUMBER} -Dsonar.java.binaries=build"
+            sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=params.repository-${BRANCH_NAME}-${BUILD_NUMBER} -Dsonar.java.binaries=build"
         }
     }
 
