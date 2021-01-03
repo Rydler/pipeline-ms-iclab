@@ -35,6 +35,7 @@ def call(){
     if ("${BRANCH_NAME}" == "develop"){
         stage('gitCreateRelease'){
             echo "Crear rama Release"
+            //git push <remote-name> <local-branch-name>:<remote-branch-name>
 
         }
     }
