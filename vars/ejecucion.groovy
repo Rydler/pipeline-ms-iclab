@@ -18,13 +18,13 @@ def call(){
                         util.validarStages()
                         
                         // VALIDA QUE LAS RAMA A PROCESAR SEA VALIDA. INPUT: NOMBRE RAMA. OUTPUT BOLEANO
-                        if (util.validarRamas()){
-
-                        } else {
-                            error "El nombre de la Rama no es valido"
+                        if (util.validarRamas()){} else {error "El nombre de la Rama no es valido"}
+                        
+                        // VALIDA FORMATO NOMBRE RAMA RELEASE
+                        if ("${BRANCH_NAME}" == 'release'){
+                            util.validarNombre()
                         }
-                        //def check = util.validarRamas()
-                        //echo "${check}"
+
                         // VALIDA TECNOLOGIA UTILIZADA
                         util.validaTecnologia()
                         // VALIDA ARCHIVO EXISTENTE

@@ -7,7 +7,7 @@ def validarStages(){
 
 def validarRamas(){
     echo "Funcion Validando Ramas"
-    def rama_value = "prueba"
+    def rama_value = "${BRANCH_NAME}"
     return  (rama_value.startsWith('feature') || rama_value.startsWith('develop') || rama_value.startsWith('release'))   
 }
 
