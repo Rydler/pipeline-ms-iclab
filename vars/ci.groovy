@@ -35,7 +35,7 @@ def call(){
     // Al ser secuencial, este paso de Nexus se ejecuta si los anteriores se ejecutaron de forma correcta.
     // Fijarse en el Filepath para ir a buscar el artefacto.
     stage('nexusUpload'){
-            nexusPublisher nexusInstanceId: 'Nexus_server_local', nexusRepositoryId: 'test-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'jar', filePath: '/var/lib/jenkins/workspace/anch-ms-iclab_feature-estadopais/build/libs']], mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'jar', version: '1.0.5']]]
+            nexusPublisher nexusInstanceId: 'Nexus_server_local', nexusRepositoryId: 'test-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'jar', filePath: '/var/lib/jenkins/workspace/anch-ms-iclab_feature-estadopais/build/libs/DevOpsUsach2020-0.0.1.jar']], mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'jar', version: '1.0.5']]]
         }
 
     
