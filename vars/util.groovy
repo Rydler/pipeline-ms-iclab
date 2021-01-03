@@ -7,7 +7,9 @@ def validarStages(){
 
 def validarRamas(){
     echo "Funcion Validando Ramas"
-    return ${BRANCH_NAME}.startsWith('feature')    
+    def ramita = "${BRANCH_NAME}"
+    echo ramita
+    //return ${BRANCH_NAME}.startsWith('feature')    
 }
 
 def validarNombre(){
