@@ -14,12 +14,17 @@ def call(){
                 steps{
                     script{
 
-                        
                         // VALIDA SI LOS STAGE INGRESADOS POR EL USUARIO SON VALIDOS. INPUT: STRING CON STAGE INGRESADOS. OUTPUT: BOLEANO
                         util.validarStages()
+                        
                         // VALIDA QUE LAS RAMA A PROCESAR SEA VALIDA. INPUT: NOMBRE RAMA. OUTPUT BOLEANO
-                        def check = util.validarRamas()
-                        echo "${check}"
+                        if (util.validarRamas()){
+
+                        } else {
+                            error "El nombre de la Rama no es valido"
+                        }
+                        //def check = util.validarRamas()
+                        //echo "${check}"
                         // VALIDA TECNOLOGIA UTILIZADA
                         util.validaTecnologia()
                         // VALIDA ARCHIVO EXISTENTE
