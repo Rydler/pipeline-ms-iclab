@@ -1,11 +1,10 @@
 def call(){
 
     echo "Estoy dentro del CI"
-    echo "REPOSITORIO ==> "
-    echo "RAMA ==> ${BRANCH_NAME}"
-    echo "NºEJECUCION ==> ${EXECUTOR_NUMBER}"
     def repository = util.determineRepoName()
     echo "ESTE ES TU REPO: " + repository
+    echo "RAMA ==> ${BRANCH_NAME}"
+    echo "NºEJECUCION ==> ${EXECUTOR_NUMBER}"
 
 
 
@@ -30,7 +29,7 @@ def call(){
     stage('Sonar'){
         def scannerHome = tool 'sonar';
         withSonarQubeEnv('sonar') { // If you have configured more than one global server connection, you can specify its name
-            sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=ejemplo-prueba -Dsonar.java.binaries=build"
+            sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=repository-${BRANCH_NAME}-${EXECUTOR_NUMBER} -Dsonar.java.binaries=build"
         }
     }
 
