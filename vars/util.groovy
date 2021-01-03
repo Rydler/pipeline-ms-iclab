@@ -27,3 +27,7 @@ def validaArchivo(){
         echo 'No Existe el Archivo para la aplicacion en Gradle'
     }
 }
+
+def determineRepoName() {
+    return scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]
+}

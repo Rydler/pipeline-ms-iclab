@@ -4,6 +4,8 @@ def call(){
     echo "REPOSITORIO ==> "
     echo "RAMA ==> ${BRANCH_NAME}"
     echo "NºEJECUCION ==> ${EXECUTOR_NUMBER}"
+    def repository = determineRepoName()
+    echo "ESTE ES TU REPO: " + repository
 
 
 
