@@ -18,7 +18,7 @@ def call(){
                         // VALIDA SI LOS STAGE INGRESADOS POR EL USUARIO SON VALIDOS. INPUT: STRING CON STAGE INGRESADOS. OUTPUT: BOLEANO
                         util.validarStages()
                         // VALIDA QUE LAS RAMA A PROCESAR SEA VALIDA. INPUT: NOMBRE RAMA. OUTPUT BOLEANO
-                        util.validarRamas()
+                        def check = util.validarRamas()
                         // VALIDA TECNOLOGIA UTILIZADA
                         util.validaTecnologia()
                         // VALIDA ARCHIVO EXISTENTE
