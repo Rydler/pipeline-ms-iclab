@@ -7,6 +7,12 @@ def validarStages(){
 
 def validarRamas(){
     echo "Funcion Validando Ramas"
+    echo "${BRANCH_NAME}"
+    if ("${BRANCH_NAME}" == 'feature' || "${BRANCH_NAME}" == 'develop' || "${BRANCH_NAME}" == 'release') {
+        echo "RAMA CORRECTA"
+    } else {
+        echo "RAMA INCORRECTA"
+    }
 }
 
 def validarNombre(){
