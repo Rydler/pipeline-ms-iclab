@@ -1,12 +1,9 @@
 def call(){
 
     echo "Estoy dentro del CI"
+    
+    // Obtengo el nombre del repositorio
     def repository = util.determineRepoName()
-    echo "ESTE ES TU REPO: " + repository
-    echo "RAMA ==> ${BRANCH_NAME}"
-    echo "NºEJECUCION ==> ${EXECUTOR_NUMBER}"
-
-
 
     //Compila, Testea y Genera el Jar usando gradle
     stage('Compile, Test & Jar'){
@@ -18,18 +15,10 @@ def call(){
         Testear el código con comando maven.
     */
 
-
-    /*
-    - sonar
-        Generar análisis con sonar para cada ejecución
-        Cada ejecución debe tener el siguiente formato de nombre:
-        {nombreRepo}-{rama}-{numeroEjecucion} ejemplo: ms-iclab-feature-estadomundial-10
-    */
-
     stage('Sonar'){
         def scannerHome = tool 'sonar';
         withSonarQubeEnv('sonar') { // If you have configured more than one global server connection, you can specify its name
-            sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=repository-${BRANCH_NAME}-${EXECUTOR_NUMBER} -Dsonar.java.binaries=build"
+            sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=repository-${BRANCH_NAME}-${BUILD_NUMBER} -Dsonar.java.binaries=build"
         }
     }
 
@@ -39,13 +28,21 @@ def call(){
             nexusPublisher nexusInstanceId: 'Nexus_server_local', nexusRepositoryId: 'test-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'jar', filePath: '/var/lib/jenkins/workspace/anch-ms-iclab_feature-estadopais/build/libs/DevOpsUsach2020-0.0.1.jar']], mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'jar', version: '1.0.5']]]
         }
 
+    // Entrara a este Stage solo si la rama que esta pasando por el CI es Develop
+    if ("${BRANCH_NAME}" == "develop"){
+        stage('gitCreateRelease'){
+            echo "Crear rama Release"
+
+        }
+    }
     
     
     
     /*
-        - unitTest
+    - Compila, Testea y Genera el Jar usando gradle
+    - unitTest
         Testear el código con comando maven.
-       - sonar
+    - sonar
         Generar análisis con sonar para cada ejecución
         Cada ejecución debe tener el siguiente formato de nombre:
         {nombreRepo}-{rama}-{numeroEjecucion} ejemplo: ms-iclab-feature-estadomundial-10

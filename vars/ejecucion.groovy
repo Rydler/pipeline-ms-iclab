@@ -29,7 +29,7 @@ def call(){
 
             stage('Branch Feature') {
                 when {
-                    branch 'feature-estadopais'
+                    branch 'feature-*'
                 }    
                 steps{
                     script{
