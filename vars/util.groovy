@@ -9,6 +9,11 @@ def validarRamas(){
     echo "Funcion Validando Ramas"
     def ramita = "${BRANCH_NAME}"
     echo ramita
+    if (ramita.startsWith('feature')){
+        echo "RAMA VALIDA"
+    } else {
+        echo "RAMA INVALIDA"
+    }
     //return ${BRANCH_NAME}.startsWith('feature')    
 }
 
