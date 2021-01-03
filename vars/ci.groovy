@@ -2,6 +2,9 @@ def call(){
 
     echo "Estoy dentro del CI"
 
+    stage('Build'){
+        sh './gradlew clean build'
+    }
 
     /*
 
