@@ -4,6 +4,7 @@ def validarStages(){
 
     def arrayStage =  params.stage.split(';')
     echo "Funcion Validando Stages"
+    def aux = 0
     def rama_value = "${BRANCH_NAME}"
     def validStageCI = ['Compile, Test & Jar', 'Sonar', 'nexusUpload', 'gitCreateRelease']
     def validStageCD = ['Build', 'Sonar', 'Run', 'Test', 'Nexus']
