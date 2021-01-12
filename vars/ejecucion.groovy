@@ -43,7 +43,7 @@ def call(){
 
                         echo "NOMBRE RAMA: ${BRANCH_NAME}"
                         // INTEGRACION CONTINUA
-                        ci.call() 
+                        //ci.call() 
                     }
                 }
             }
@@ -57,7 +57,7 @@ def call(){
 
                         echo "NOMBRE RAMA: ${BRANCH_NAME}"
                         // INTEGRACION CONTINUA
-                        ci.call()
+                        //ci.call()
                     }
                 } 
             }
@@ -73,7 +73,7 @@ def call(){
                         // VALIDAR NOMBRE SEGUN PATRON release-v{major}-{minor}-{patch}
                         util.validarNombre()
                         // Despliegue continuo
-                        cd.call()
+                        //cd.call()
                         
                     }
                 } 

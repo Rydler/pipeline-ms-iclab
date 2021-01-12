@@ -1,9 +1,34 @@
 
 
 def validarStages(){
-    
+
+    def arrayStage =  params.stage.split(';')
     echo "Funcion Validando Stages"
+    def rama_value = "${BRANCH_NAME}"
+    def validStageCI = ['Compile, Test & Jar', 'Sonar', 'nexusUpload', 'gitCreateRelease']
+    def validStageCD = ['Build', 'Sonar', 'Run', 'Test', 'Nexus']
+
+    if (rama_value.startsWith('feature') || rama_value.startsWith('develop')){
+        echo "VALIDANDO STAGES DE CI"
+        for (String validValues: validStageCI){
+            for (String values: arrayStage){
+                if (values == validValues){
+                    aux += 1
+                }
+            }
+        }
+        if (aux == arrayStage.size()){
+            echo "STAGES CI VALIDOS"
+        }
+        else{
+            error "STAGES CI INVALIDOS"
+        }
+    }
+    else if (rama_value.startsWith('release')){
+        echo "VALIDANDO STAGES DE CD"
+    }
 }
+
 
 def validarRamas(){
     echo "Funcion Validando Ramas"
